@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="deploy" name="TestApp">
+	<property file="build.properties"/>
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="c:/eclipse/"/>
+    <property name="CATALENA_HOME" value="C:/apache-tomcat-8.0.11"/> 
+  	<property name="DEPLOYMENT_HOME" value="${CATALENA_HOME}/webapps/"/>
+    <property name="web.dir" value="."/>
+    <property name="build.dir" value="build"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
+	<path id="Apache Tomcat v8.0 [Apache Tomcat v8.0].libraryclasspath">
+	        <pathelement location="${CATALENA_HOME}/lib/annotations-api.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/catalina-ant.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/catalina-ha.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/catalina-storeconfig.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/catalina-tribes.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/catalina.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/ecj-4.4RC4.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/el-api.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/jasper-el.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/jasper.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/jsp-api.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/servlet-api.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/tomcat-api.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/tomcat-coyote.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/tomcat-dbcp.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/tomcat-i18n-es.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/tomcat-i18n-fr.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/tomcat-i18n-ja.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/tomcat-jdbc.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/tomcat-jni.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/tomcat-spdy.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/tomcat-util-scan.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/tomcat-util.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/tomcat-websocket.jar"/>
+	        <pathelement location="${CATALENA_HOME}/lib/websocket-api.jar"/>
+	    </path>
+    <path id="Web App Libraries.libraryclasspath"/>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="TestApp.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Apache Tomcat v8.0 [Apache Tomcat v8.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+    </path>
+    <path id="master-classpath">
+        <fileset dir="${web.dir}/WEB-INF/lib">
+            <include name="*.jar"/>
+        </fileset>
+        <pathelement path="${build.dir}"/>
+    </path>
+    
+    <target name="deploy"
+      description="Deploy application">
+    	<delete>
+			<fileset dir="${DEPLOYMENT_HOME}">
+	    		<include name="*.war"/>
+			</fileset>
+		</delete>
+    	<copy todir="${DEPLOYMENT_HOME}" overwrite="true" verbose="true">
+    	    <fileset dir=".">
+    	        <include name="*.war" />
+    	    </fileset>
+    	</copy>
+    </target>
+<!--
+    <target name="deploywar"  
+      description="Deploy application as a WAR file">
+        <war destfile="${name}.war"
+             webxml="${web.dir}/WEB-INF/web.xml">
+            <fileset dir="${web.dir}">
+                <include name="*.war"/>
+            </fileset>
+        </war>
+        <copy todir="${deploy.path}" preservelastmodified="true">
+            <fileset dir=".">
+                <include name="*.war"/>
+            </fileset>
+        </copy>
+    </target>
+    
+    <target name="clean" description="Clean output directories">
+        <delete>
+            <fileset dir="${build.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+        </delete>
+    </target>
+ -->
+</project>
